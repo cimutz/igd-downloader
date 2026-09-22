@@ -1,0 +1,94 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  color-scheme: dark;
+  --background: oklch(0.12 0.018 225);
+  --foreground: oklch(0.92 0.025 205);
+  --card: oklch(0.16 0.025 225);
+  --card-foreground: oklch(0.92 0.025 205);
+  --popover: oklch(0.15 0.025 225);
+  --popover-foreground: oklch(0.92 0.025 205);
+  --primary: oklch(0.78 0.15 205);
+  --primary-foreground: oklch(0.12 0.018 225);
+  --secondary: oklch(0.2 0.03 225);
+  --secondary-foreground: oklch(0.9 0.03 205);
+  --muted: oklch(0.2 0.025 225);
+  --muted-foreground: oklch(0.62 0.035 210);
+  --accent: oklch(0.23 0.04 220);
+  --accent-foreground: oklch(0.92 0.025 205);
+  --destructive: oklch(0.65 0.18 25);
+  --border: oklch(0.32 0.05 215 / 55%);
+  --input: oklch(0.25 0.035 220);
+  --ring: oklch(0.78 0.15 205);
+  --radius: 0.35rem;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { background: var(--background); }
+  body { @apply bg-background text-foreground; min-width: 320px; }
+  button, input { font: inherit; }
+}
+
+.igd-app { background: radial-gradient(circle at 70% -20%, rgba(7, 100, 130, .14), transparent 35%), linear-gradient(145deg, #081018 0%, #0a121b 48%, #081016 100%); }
+.igd-panel { border: 1px solid rgba(83, 166, 196, .23); background: rgba(12, 25, 35, .72); border-radius: .35rem; box-shadow: inset 0 1px 0 rgba(140, 219, 240, .035); }
+.igd-sidebar { display: flex; width: 224px; flex-shrink: 0; flex-direction: column; justify-content: space-between; border-right: 1px solid rgba(83, 166, 196, .2); background: rgba(5, 14, 21, .72); min-height: calc(100vh - 76px); }
+.sidebar-top { padding: 20px 12px; }
+.sidebar-label, .section-kicker { color: rgba(113, 178, 197, .74); font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+.nav-item { display: flex; width: 100%; align-items: center; gap: 10px; border-left: 2px solid transparent; padding: 10px 12px; color: #91a9b4; font-size: 13px; text-align: left; transition: background .15s, color .15s, border-color .15s; }
+.nav-item svg { width: 16px; height: 16px; }
+.nav-item:hover, .nav-item.is-active { border-left-color: #4de2ff; background: rgba(26, 147, 174, .12); color: #c9f7ff; }
+.nav-chevron { margin-left: auto; opacity: 0; width: 13px !important; }
+.nav-item.is-active .nav-chevron { opacity: 1; color: #4de2ff; }
+.sidebar-footer { border-top: 1px solid rgba(83, 166, 196, .18); padding: 16px; }
+.status-dot { display: inline-block; height: 6px; width: 6px; border-radius: 999px; background: #47e3ae; box-shadow: 0 0 8px rgba(71, 227, 174, .65); }
+.mobile-toolbar { display: none; }
+.field-label { display: flex; flex-direction: column; gap: 7px; color: #a3bdc7; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.field-label input { border: 1px solid rgba(83, 166, 196, .28); border-radius: .3rem; background: rgba(5, 16, 25, .7); padding: 10px 11px; color: #d6f4fb; font-size: 13px; font-weight: 400; letter-spacing: 0; outline: none; text-transform: none; }
+.field-label input:focus { border-color: #4de2ff; box-shadow: 0 0 0 2px rgba(77, 226, 255, .1); }
+.status-toggle { display: flex; align-items: center; gap: 8px; border: 1px solid rgba(155, 173, 182, .3); border-radius: 999px; padding: 6px 10px; color: #8ba1ab; font-size: 12px; }
+.status-toggle span { width: 7px; height: 7px; border-radius: 999px; background: #71818a; }
+.status-toggle.is-on { border-color: rgba(71, 227, 174, .35); color: #47e3ae; }
+.status-toggle.is-on span { background: #47e3ae; box-shadow: 0 0 8px rgba(71, 227, 174, .7); }
+
+@media (max-width: 768px) {
+  .igd-sidebar { position: fixed; top: 76px; bottom: 0; left: 0; z-index: 40; display: none; width: 240px; min-height: 0; box-shadow: 20px 0 40px rgba(0,0,0,.4); }
+  .igd-sidebar.is-open { display: flex; }
+  .mobile-toolbar { display: flex; align-items: center; gap: 10px; border-bottom: 1px solid rgba(83, 166, 196, .18); padding: 10px 16px; color: #77b8c6; font-size: 11px; font-weight: 700; letter-spacing: .15em; }
+}
+
+@media (max-width: 560px) {
+  .igd-panel { border-radius: .3rem; }
+  .section-kicker { font-size: 9px; }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
